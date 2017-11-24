@@ -2,44 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" class="cufon-active cufon-ready" lang="es-ES"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-
-
-
-
-
-
-
-
-<title>Argentum Online - Servidor Oficial del primer MMORPG argentino</title>
-
-
-
-
-
 <script type="text/rocketscript" data-rocketoptimized="true">
 
 	$(document).ready(function() {
 
-                $('#usronline').load('showUsers.php');
+                $('#usronline').load('http://www.comunidadargentum.com/showUsers.php');
 
 		$('#slideshow').slideshow({
 
 			timeout: 3200,
 
 		});
-
-
-
+		
 		var refreshId = setInterval(function() 
 
 		{
 
-		       $('#usronline').load('showUsers.php');
+		       $('#usronline').load('http://www.comunidadargentum.com/showUsers.php');
 
 		}, 10);
-
-
-
 	});
 
 </script>
