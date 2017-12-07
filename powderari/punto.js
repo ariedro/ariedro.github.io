@@ -17,10 +17,10 @@ function Punto(x, y, m){
 		this.x = this.x + this.vx;
 		this.y = this.y + this.vy;
 		this.vy = this.vy + this.grav;
-		if (this.y >= height){
+		if (this.y >= (height - this.m)){
 			this.vy = this.vy * this.rebote;
 		}
-		if (this.x >= width || this.x <= 0){
+		if (this.x >= width - this.m || this.x - this.m <= 0){
 			this.vx = this.vx * this.rebote;
 		}
 	}

@@ -9,8 +9,8 @@ function CentroMasa(puntos){
 			y += (puntos[i].y * puntos[i].m);
 			m += puntos[i].m
 		}
-		x /= (puntos.length * m);
-		y /= (puntos.length * m);
+		x /= m;
+		y /= m;
 		fill(255, 50, 50);
 		ellipse(x, y, 5, 5);
 
