@@ -7,6 +7,7 @@ function Punto(x, y, m){
 	this.grav = 0.5;
 	this.rebote = -0.9;
 	this.m = m;
+	this.portal = false;
 	
 	this.show = function(){
 		fill(0, 0, 0);
@@ -18,12 +19,22 @@ function Punto(x, y, m){
 		this.y = this.y + this.vy;
 		this.vy = this.vy + this.grav;
 		if (this.y >= (height - this.m)){
-			this.vy = this.vy * this.rebote;
+			if (this.portal)
+				this.y = 0;
+			else
+				this.vy = this.vy * this.rebote;
 		}
 		if (this.x >= width - this.m || this.x - this.m <= 0){
 			this.vx = this.vx * this.rebote;
 		}
 	}
+	
+	this.activarPortal = function(){
+		if (this.portal == false)
+			this.portal = true;
+		else
+			this.portal = false;
+	}	
 }
 
 /*y = yo + vt + 1/2 a*t^2

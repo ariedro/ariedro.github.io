@@ -5,6 +5,14 @@ const CANTPUNTOS = 100;
 const STARTY = -500;
 const MAXMASA = 20;
 
+var fondoR = 255;
+
+function preload() {
+	soundFormats('mp3', 'ogg');
+	mySound = loadSound('fondo.mp3');
+	mySound.setLoop(true);
+}
+
 function setup() {
 	createCanvas(600, 400);
 	for (var i = 0; i < CANTPUNTOS; i++) {
@@ -14,7 +22,7 @@ function setup() {
 }
 
 function draw() {
-	background(255,223,243);
+	background(fondoR,223,243);
 	for (var i = 0; i < puntos.length; i++) {
 		puntos[i].show();
 		puntos[i].move();
@@ -29,6 +37,20 @@ function keyPressed() {
 			puntos[i].y = random(STARTY,0);
 			puntos[i].vx = 0;
 			puntos[i].vy = 0;
+		}
+	}
+	if (key == 'P') {
+		for (var i = 0; i < CANTPUNTOS; i++) {
+			puntos[i].activarPortal();
+		}
+		if (mySound.isPlaying()){
+			mySound.stop();
+			fondoR = 255;
+		}
+		else{
+			mySound.setVolume(1);
+			mySound.play();
+			fondoR = 0;
 		}
 	}
 
