@@ -5,7 +5,7 @@ var centromasa;
 function setup() {
 	createCanvas(600, 400);
 	for (var i = 0; i < 50; i++) {
-		puntos[i] = new Punto(random(0,width),random(-100,0));
+		puntos[i] = new Punto(random(0,width),random(-100,0), random(0,10));
 	}
 	centromasa = new CentroMasa(puntos);
 }

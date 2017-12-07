@@ -1,4 +1,4 @@
-function Punto(x, y){
+function Punto(x, y, m){
 	
 	this.x = x;
 	this.y = y;
@@ -6,10 +6,11 @@ function Punto(x, y){
 	this.vy = 0;
 	this.grav = 0.5;
 	this.rebote = -0.9;
+	this.m = m;
 	
 	this.show = function(){
 		fill(0, 0, 0);
-		ellipse(this.x, this.y, 1, 1);
+		ellipse(this.x, this.y, this.m, this.m);
 	}
 	
 	this.move = function(){
