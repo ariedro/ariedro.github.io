@@ -1,9 +1,10 @@
 
 var puntos = [];
 var centromasa;
-const CANTPUNTOS = 100;
+var lineas = [];
+const CANTPUNTOS = 10;
 const STARTY = -500;
-const MAXMASA = 20;
+const MAXMASA = 100;
 
 var fondoR = 255;
 
@@ -14,11 +15,18 @@ function preload() {
 }
 
 function setup() {
-	createCanvas(600, 400);
+	createCanvas(800, 600);
 	for (var i = 0; i < CANTPUNTOS; i++) {
-		puntos[i] = new Punto(random(MAXMASA,width - MAXMASA),random(STARTY,0), random(0,20));
+		puntos[i] = new Punto(random(MAXMASA,width - MAXMASA),random(STARTY,0), random(0,MAXMASA));
 	}
 	centromasa = new CentroMasa(puntos);
+	for (var i = 0; i < puntos.length; i++){
+		for (var j = 0; j < puntos.length; j++){
+			if (i != j){
+				lineas[i] = new Linea(puntos[i], puntos[j]);
+			}
+		}
+	}
 }
 
 function draw() {
@@ -28,6 +36,9 @@ function draw() {
 		puntos[i].move();
 	}
 	centromasa.show();
+	for (var i = 0; i < lineas.length; i++){
+		lineas[i].show();
+	}
 }
 
 function keyPressed() {
