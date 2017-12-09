@@ -2,6 +2,7 @@ function Canion(posX, posY, angulo){
 
 	LARGO = 15;
 	POTENCIA = 20;
+	MASA = 5;
 	
 	this.x = posX;
 	this.y = posY;
@@ -10,11 +11,12 @@ function Canion(posX, posY, angulo){
 	this.dy = 0;
 	this.ang = angulo;
 	this.dir = 0;
-	
+	this.masa = MASA;
 	
 	this.show = function(){
-		fill(0, 0, 0);
+		stroke(this.masa * 5, 0, 0);
 		line(this.x, this.y, this.dx, this.dy);
+		stroke(0,0,0);
 	}
 	
 	this.move = function(){
@@ -31,7 +33,11 @@ function Canion(posX, posY, angulo){
 		this.largo += crecimiento;
 	}
 	
+	this.aumentarMasa = function(aumento){
+		this.masa += aumento;
+	}
+	
 	this.disparar = function(){
-		return new Tiro(this.dx, this.dy, this.ang, POTENCIA, 5);
+		return new Tiro(this.dx, this.dy, this.ang, POTENCIA, this.masa);
 	}
 }

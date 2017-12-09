@@ -10,6 +10,7 @@ function preload() {
 
 function setup() {
 	createCanvas(800, 600);
+	fill(0,0,0);
 	canion = new Canion(width / 2, height / 2, 5);
 }
 
@@ -37,6 +38,12 @@ function keyPressed() {
 	if (key == 'Z' || key == 'X') {
 		tiros.push(canion.disparar());
 		sonidoDisparo.play();
+	}
+	if (key == 'O'){
+		canion.aumentarMasa(1);
+	}
+	if (key == 'P'){
+		canion.aumentarMasa(-1);
 	}
 	if (keyCode === RIGHT_ARROW) {
 		canion.setDir(0.1);
