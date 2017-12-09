@@ -19,8 +19,6 @@ function Canion(posX, posY, angulo){
 	this.movex = 0;
 	this.movey = 0;
 	
-	sonidoDisparo = loadSound('shot.wav');
-	
 	this.show = function(){
 		stroke(this.masa * 5, 0, 0);
 		line(this.x, this.y, this.dx, this.dy);
@@ -30,7 +28,8 @@ function Canion(posX, posY, angulo){
 		text(this.x,10,20);
 		text(this.y,10,40);
 		text(this.ang,10,60);
-		text(this.largo,10,80);
+		text(this.masa,10,80);
+		text(this.largo,10,100);
 	}
 	
 	this.setMove = function(unX,unY){
@@ -59,11 +58,11 @@ function Canion(posX, posY, angulo){
 	}
 	
 	this.aumentarMasa = function(aumento){
-		this.masa += aumento;
+		if ((this.masa + aumento) > 0)
+			this.masa += aumento;
 	}
 	
 	this.disparar = function(){
-		sonidoDisparo.play();
-		return new Tiro(this.dx, this.dy, this.ang, POTENCIA, this.masa);
+		return new Tiro(this.dx, this.dy, this.ang, POTENCIA, this.masa, soundTiroRebote);
 	}
 }

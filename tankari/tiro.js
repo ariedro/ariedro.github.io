@@ -1,4 +1,4 @@
-function Tiro(x, y, angulo, potencia, masa){
+function Tiro(x, y, angulo, potencia, masa, soundTiroRebote){
 	
 	this.x = x;
 	this.y = y;
@@ -10,13 +10,13 @@ function Tiro(x, y, angulo, potencia, masa){
 	this.tiempo = 0;
 	TIEMPOMAX = 100;
 	this.destruime = false;
-	this.sonido = sonidoRebote;
+	this.sonidoRebote = soundTiroRebote;
 	
 	this.show = function(){
 		ellipse(this.x, this.y, this.m * 2, this.m * 2);
 		this.tiempo++;
 		if (this.tiempo >= TIEMPOMAX){
-			this.destruime = true;
+			this.setDestruccion();
 		}
 	}
 	
@@ -27,7 +27,7 @@ function Tiro(x, y, angulo, potencia, masa){
 		if (this.y >= (height - this.m)){
 			this.y = height - this.m;
 			this.vy = this.vy * this.rebote;
-			this.sonido.play();
+			this.sonidoRebote.play();
 		}
 		if (this.x >= width - this.m || this.x - this.m <= 0){
 			if (this.x >= width - this.m)
@@ -35,8 +35,12 @@ function Tiro(x, y, angulo, potencia, masa){
 			else
 				this.x = 0 + this.m;
 			this.vx = this.vx * this.rebote;
-			this.sonido.play();
+			this.sonidoRebote.play();
 		}
+	}
+	
+	this.setDestruccion = function(){
+		this.destruime = true;
 	}
 	
 	this.deberiaDestruirse = function(){
