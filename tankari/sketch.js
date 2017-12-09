@@ -4,7 +4,6 @@ var canion;
 
 function preload() {
 	soundFormats('wav');
-	sonidoDisparo = loadSound('shot.wav');
 	sonidoRebote = loadSound('rebote.wav');
 }
 
@@ -30,15 +29,16 @@ function draw() {
 
 function keyReleased() {
 	if (key != ' ') {
-		canion.setDir(0);
+		canion.setMove(0,0);
 	}
 }
 
 function keyPressed() {
-	if (key == 'Z' || key == 'X') {
-		tiros.push(canion.disparar());
-		sonidoDisparo.play();
-	}
+	if (key == 'W') canion.setMove(0,-5);
+	if (key == 'S') canion.setMove(0,5);
+	if (key == 'D') canion.setMove(5,0);
+	if (key == 'A') canion.setMove(-5,0);
+	
 	if (key == 'O'){
 		canion.aumentarMasa(1);
 	}
@@ -46,12 +46,22 @@ function keyPressed() {
 		canion.aumentarMasa(-1);
 	}
 	if (keyCode === RIGHT_ARROW) {
-		canion.setDir(0.1);
+		//canion.setDir(0.1);
+		console.log("der");
 	} else if (keyCode === LEFT_ARROW) {
-		canion.setDir(-0.1);
+		//canion.setDir(-0.1);
+		console.log("izq");
 	} else if (keyCode === UP_ARROW){
 		canion.crecer(5);
 	} else if (keyCode === DOWN_ARROW){
 		canion.crecer(-5);
 	}
+}
+
+function mouseMoved(){
+	canion.setDir(mouseX, mouseY);
+}
+
+function mousePressed(){
+	tiros.push(canion.disparar());
 }
