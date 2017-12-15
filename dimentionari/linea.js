@@ -5,8 +5,8 @@ function Linea(punto1, punto2){
 	this.p1 = punto1;
 	this.p2 = punto2;
 	
-	this.show = function(func){
-		line(this.p1.fx(func) + OFF_X, this.p1.fy(func) + OFF_Y, this.p2.fx(func) + OFF_X, this.p2.fy(func) + OFF_Y);
+	this.show = function(rotac, func){
+		line(this.p1.fx(rotac, func) + OFF_X, this.p1.fy(rotac, func) + OFF_Y, this.p2.fx(rotac, func) + OFF_X, this.p2.fy(rotac, func) + OFF_Y);
 	}
 	
 	this.get1 = function(){
