@@ -3,6 +3,8 @@ lineas = [];
 var delta;
 var s;
 
+DELTATRANS = 0.5;
+
 function setup() {
 	createCanvas(800, 600);
 	fill(0,0,0);
@@ -39,7 +41,8 @@ function draw() {
 		lineas[i].show(func);
 	
 	s = "[ " + Math.floor(func[0]) + "  " + Math.floor(func[1]) + "  " + Math.floor(func[2]) + " ]" + "\n" +
-		"[ " + Math.floor(func[3]) + "  " + Math.floor(func[4]) + "  " + Math.floor(func[5]) + " ]";
+		"[ " + Math.floor(func[3]) + "  " + Math.floor(func[4]) + "  " + Math.floor(func[5]) + " ]" + "\n" + 
+		"( " + puntos[0].x + "  " + puntos[0].y + "  " + puntos[0].z + " )";
 	text(s,10,20);
 	
 	if (keyIsDown(SHIFT))
@@ -59,5 +62,28 @@ function draw() {
 		func[4] += delta;
 	if (keyIsDown(68))
 		func[5] += delta;
-
+	
+	for(var i = 0; i < puntos.length; i++){
+		if (keyIsDown(85))
+			puntos[i].x += DELTATRANS;
+		if (keyIsDown(74))
+			puntos[i].x -= DELTATRANS;
+		if (keyIsDown(73))
+			puntos[i].y += DELTATRANS;
+		if (keyIsDown(75))
+			puntos[i].y -= DELTATRANS;
+		if (keyIsDown(79))
+			puntos[i].z += DELTATRANS;
+		if (keyIsDown(76))
+			puntos[i].z -= DELTATRANS;
+	}
+	
+	if (keyIsDown(ENTER)){
+		func[0] = random(-10,10);
+		func[1] = random(-10,10);
+		func[2] = random(-10,10);
+		func[3] = random(-10,10);
+		func[4] = random(-10,10);
+		func[5] = random(-10,10);
+	}
 }
