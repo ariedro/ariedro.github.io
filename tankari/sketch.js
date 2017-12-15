@@ -9,7 +9,7 @@ function preload() {
 	soundFormats('wav');
 	soundTiroDisparo = loadSound('shot.wav');
 	soundTiroRebote = loadSound('rebote.wav');
-	soundTiroRebote.setVolume(0,25);
+	soundTiroRebote.setVolume(0.5);
 	soundEnemigoHit = loadSound('hit.wav');	
 	soundEnemigoHit.setVolume(0.10);
 	soundEnemigoMuere = loadSound('enemydie.wav');;

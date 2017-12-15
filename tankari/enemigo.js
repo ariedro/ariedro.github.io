@@ -32,7 +32,6 @@ function Enemigo(x, y){
 		if ((tiro.x + tiro.m) > this.x - TAM && (tiro.x - tiro.m) < this.x + TAM)
 			if ((tiro.y - tiro.m) < this.y + TAM && (tiro.y + tiro.m) > this.y - TAM){
 				this.vida -= tiro.m * 5;
-				console.log(this.vida);
 				return true;
 			}
 		return false;
