@@ -66,6 +66,7 @@ function generar() {
 	anteriores.push(num);
 	document.getElementById("titulo").innerHTML = titulos[num];
 	document.getElementById("video").src = "https://www.youtube.com/embed/" + videos[num];
+	document.getElementById("video").style.display = "inline-block";
 	document.getElementById("boton").innerHTML = "Tirame otro";
 }
 
