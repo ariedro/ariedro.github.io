@@ -24,30 +24,30 @@ var titulos= [	"1x01: Tarjeta de Navidad",
 				"2x10: El anillo de Salom\xF3n",
 				"2x11: El final"];
 
-var videos = [	"https://www.youtube.com/embed/Yl-VY6eNivk",
-				"https://www.youtube.com/embed/3-5_dU7hD9g",
-				"https://www.youtube.com/embed/3z0tX34GoDs",
-				"https://www.youtube.com/embed/-Ew4wWfoLv8",
-				"https://www.youtube.com/embed/oCGRIBWE53c",
-				"https://www.youtube.com/embed/WzPWJvuT_M8",
-				"https://www.youtube.com/embed/lUDyPBqHeUI",
-				"https://www.youtube.com/embed/axqO2XH1mbU",
-				"https://www.youtube.com/embed/gaizei-jmC8",
-				"https://www.youtube.com/embed/uX2DNdjeQAU",
-				"https://www.youtube.com/embed/TtBvxgRmzfk",
-				"https://www.youtube.com/embed/rnFcy6LO-y8",
-				"https://www.youtube.com/embed/vlOQi8Lt21s",
-				"https://www.youtube.com/embed/o8w9iIPbdkg",
-				"https://www.youtube.com/embed/dWb8fr3ZrYo",
-				"https://www.youtube.com/embed/0R4nuwpEnjs",
-				"https://www.youtube.com/embed/vZJFQPPLrFg",
-				"https://www.youtube.com/embed/Kz3AbZ630kw",
-				"https://www.youtube.com/embed/E56aE9EMRyM",
-				"https://www.youtube.com/embed/HHrIYjYGX-I",
-				"https://www.youtube.com/embed/Ct7C8ZdAhbg",
-				"https://www.youtube.com/embed/jaqVTzWb_OQ",
-				"https://www.youtube.com/embed/81q2CZfQe-M",
-				"https://www.youtube.com/embed/rHs_DBLJIwk"];
+var videos = [	"Yl-VY6eNivk",
+				"3-5_dU7hD9g",
+				"3z0tX34GoDs",
+				"-Ew4wWfoLv8",
+				"oCGRIBWE53c",
+				"WzPWJvuT_M8",
+				"lUDyPBqHeUI",
+				"axqO2XH1mbU",
+				"gaizei-jmC8",
+				"uX2DNdjeQAU",
+				"TtBvxgRmzfk",
+				"rnFcy6LO-y8",
+				"vlOQi8Lt21s",
+				"o8w9iIPbdkg",
+				"dWb8fr3ZrYo",
+				"0R4nuwpEnjs",
+				"vZJFQPPLrFg",
+				"Kz3AbZ630kw",
+				"E56aE9EMRyM",
+				"HHrIYjYGX-I",
+				"Ct7C8ZdAhbg",
+				"jaqVTzWb_OQ",
+				"81q2CZfQe-M",
+				"rHs_DBLJIwk"];
 
 var anteriores = [-1,-1,-1,-1,-1];
 
@@ -65,6 +65,7 @@ function generar() {
 	anteriores.shift();
 	anteriores.push(num);
 	document.getElementById("titulo").innerHTML = titulos[num];
-	document.getElementById("video").src = videos[num];
+	document.getElementById("video").src = "https://www.youtube.com/embed/" + videos[num];
+	document.getElementById("boton").innerHTML = "Tirame otro";
 }
 
