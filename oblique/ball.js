@@ -6,22 +6,24 @@ class Ball {
     this.vx = vx;
     this.vy = vy;
 
-    this.ctrl = 0.3;
+    this.ctrl = 0.01;
+    this.ax = 0;
     this.ay = 0.2;
-    this.tanlength = 5;
+    this.tanlength = 500;
   }
 
   listenKeys() {
-    if (keyIsDown(LEFT_ARROW)) this.vx -= this.ctrl;
-    if (keyIsDown(RIGHT_ARROW)) this.vx += this.ctrl;
-    if (keyIsDown(UP_ARROW)) this.vy -= this.ctrl;
-    if (keyIsDown(DOWN_ARROW)) this.vy += this.ctrl;
+    if (keyIsDown(LEFT_ARROW)) this.ax -= this.ctrl;
+    if (keyIsDown(RIGHT_ARROW)) this.ax += this.ctrl;
+    if (keyIsDown(UP_ARROW)) this.ay -= this.ctrl;
+    if (keyIsDown(DOWN_ARROW)) this.ay += this.ctrl;
   }
 
   move() {
-    this.vy += this.ay;
     if (this.y + this.vy > MAX_Y - this.r) this.vy = -this.vy;
+    else this.vy += this.ay;
     if (this.x + this.vx > MAX_X - this.r) this.vx = -this.vx;
+    else this.vx += this.ax;
     if (this.y + this.vy < 0 + this.r) this.vy = -this.vy;
     if (this.x + this.vx < 0 + this.r) this.vx = -this.vx;
 
@@ -42,16 +44,18 @@ class Ball {
     line(
       this.x,
       this.y,
-      this.x + this.vx * this.tanlength,
-      this.y + this.vy * this.tanlength
+      this.x + this.ax * this.tanlength,
+      this.y + this.ay * this.tanlength
     );
+    strokeWeight(2);
     for (let i = 0; i < 100; i++) {
-      circle(
-        this.x + this.vx * i,
+      point(
+        this.x + this.vx * i + (this.ax / 2) * i ** 2,
         this.y + this.vy * i + (this.ay / 2) * i ** 2,
         1
       );
     }
+    strokeWeight(1);
   }
 
   show() {
