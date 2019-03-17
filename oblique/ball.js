@@ -45,6 +45,13 @@ class Ball {
       this.x + this.vx * this.tanlength,
       this.y + this.vy * this.tanlength
     );
+    for (let i = 0; i < 100; i++) {
+      circle(
+        this.x + this.vx * i,
+        this.y + this.vy * i + (this.ay / 2) * i ** 2,
+        1
+      );
+    }
   }
 
   show() {
