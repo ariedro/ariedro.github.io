@@ -26,8 +26,8 @@
 var superficie3D;
 var mallaDeTriangulos;
 
-var filas = 1;
-var columnas = 1;
+var filas = 3;
+var columnas = 4;
 
 function crearGeometria() {
   superficie3D = new Plano(3, 3);
@@ -85,13 +85,33 @@ function generarSuperficie(superficie, filas, columnas) {
 
   // Buffer de indices de los triángulos
 
-  //indexBuffer=[];
-  indexBuffer = [0, 1, 2, 2, 1, 3]; // Estos valores iniciales harcodeados solo dibujan 2 triangulos, REMOVER ESTA LINEA!
+  indexBuffer = [];
 
-  for (i = 0; i < filas - 1; i++) {
-    for (j = 0; j < columnas - 1; j++) {
-      // completar la lógica necesaria para llenar el indexbuffer en funcion de filas y columnas
-      // teniendo en cuenta que se va a dibujar todo el buffer con la primitiva "triangle_strip"
+  function getIndexesFor(i, j) {
+    const a = (columnas + 1) * i + j;
+    const b = (columnas + 1) * (i + 1) + j;
+    const c = (columnas + 1) * i + (j + 1);
+    const d = (columnas + 1) * (i + 1) + (j + 1);
+
+    return { a, b, c, d };
+  }
+
+  for (i = 0; i < filas; i++) {
+    for (j = 0; j < columnas; j++) {
+      const { a, b, c, d } = getIndexesFor(i, j);
+
+      if (j == 0) {
+        indexBuffer.push(a);
+        indexBuffer.push(b);
+      }
+      indexBuffer.push(c);
+      indexBuffer.push(d);
+    }
+    if (i < filas - 1) {
+      let { a } = getIndexesFor(i + 1, 0);
+      let { d } = getIndexesFor(i, columnas - 1);
+      indexBuffer.push(d);
+      indexBuffer.push(a);
     }
   }
 
@@ -182,6 +202,7 @@ function dibujarMalla(mallaDeTriangulos) {
         */
     gl.drawElements(
       gl.TRIANGLE_STRIP,
+      // gl.TRIANGLES,
       mallaDeTriangulos.webgl_index_buffer.numItems,
       gl.UNSIGNED_SHORT,
       0
