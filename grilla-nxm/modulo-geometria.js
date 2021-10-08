@@ -94,10 +94,13 @@ class TuboSinusoidal extends Forma {
   }
   getPosicion = function (u, v) {
     const theta = u * 2 * Math.PI;
+    const phi = this.longitud * v * 2 * Math.PI;
 
-    const x = Math.cos(theta) * this.radio;
+    const radioTubo = this.radio + amplitud * Math.sin(this.longitud * phi);
+
+    const x = radioTubo * Math.cos(theta);
     const y = v * this.altura;
-    const z = Math.sin(theta) * this.radio;
+    const z = radioTubo * Math.sin(theta);
 
     return [x, y, z];
   };

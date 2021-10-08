@@ -39,10 +39,10 @@
         var modo="edges"; // wireframe, smooth, edges
         var filas=32;
         var columnas=32;
-        var radio=2;
-        var amplitud=1;
-        var longitud=1;
-        var altura=1.5;
+        var radio=1;
+        var amplitud=0.1;
+        var longitud=2.5;
+        var altura=2;
         var shaderProgram;
         var time=0;
 
@@ -270,7 +270,7 @@
             paramControllers = [];
             switch (forma) {
                 case 'tubo':
-                    paramControllers.push(gui.add(window, "amplitud", 0.1, 4).step(0.1))
+                    paramControllers.push(gui.add(window, "amplitud", 0.01, 0.3).step(0.01))
                     paramControllers.push(gui.add(window, "longitud", 0.1, 4).step(0.1))
                     paramControllers.push(gui.add(window, "altura", 0.1, 4).step(0.1))
                 case 'esfera':
