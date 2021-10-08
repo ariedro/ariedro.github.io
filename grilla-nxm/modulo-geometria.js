@@ -23,12 +23,20 @@
     
 */
 
-
 var superficie3D;
 var mallaDeTriangulos;
 
 function crearGeometria() {
-  superficie3D = new Plano(3, 3);
+  switch (forma) {
+    case "esfera":
+      superficie3D = new Esfera(radio);
+      break;
+    case "tubo":
+      superficie3D = new TuboSinusoidal(amplitud, longitud, radio, altura);
+      break;
+    default:
+      superficie3D = new Plano(3, 3);
+  }
   mallaDeTriangulos = generarSuperficie(superficie3D, filas, columnas);
 }
 
@@ -36,19 +44,62 @@ function dibujarGeometria() {
   dibujarMalla(mallaDeTriangulos);
 }
 
-function Plano(ancho, largo) {
-  this.getPosicion = function (u, v) {
-    var x = (u - 0.5) * ancho;
-    var z = (v - 0.5) * largo;
-    return [x, 0, z];
-  };
-
-  this.getNormal = function (u, v) {
+class Forma {
+  getNormal = function (u, v) {
     return [0, 1, 0];
   };
 
-  this.getCoordenadasTextura = function (u, v) {
+  getCoordenadasTextura = function (u, v) {
     return [u, v];
+  };
+}
+
+class Plano extends Forma {
+  constructor(ancho, largo) {
+    super();
+    this.ancho = ancho;
+    this.largo = largo;
+  }
+  getPosicion = function (u, v) {
+    var x = (u - 0.5) * this.ancho;
+    var z = (v - 0.5) * this.largo;
+    return [x, 0, z];
+  };
+}
+
+class Esfera extends Forma {
+  constructor(radio) {
+    super();
+    this.radio = radio;
+  }
+  getPosicion = function (u, v) {
+    const theta = u * 2 * Math.PI;
+    const phi = v * Math.PI;
+
+    const x = Math.cos(theta) * Math.sin(phi) * this.radio;
+    const y = Math.sin(theta) * Math.sin(phi) * this.radio;
+    const z = -Math.cos(phi) * this.radio;
+
+    return [x, y, z];
+  };
+}
+
+class TuboSinusoidal extends Forma {
+  constructor(amplitud, longitud, radio, altura) {
+    super();
+    this.amplitud = amplitud;
+    this.longitud = longitud;
+    this.radio = radio;
+    this.altura = altura;
+  }
+  getPosicion = function (u, v) {
+    const theta = u * 2 * Math.PI;
+
+    const x = Math.cos(theta) * this.radio;
+    const y = v * this.altura;
+    const z = Math.sin(theta) * this.radio;
+
+    return [x, y, z];
   };
 }
 
