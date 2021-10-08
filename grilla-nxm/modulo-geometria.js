@@ -23,11 +23,9 @@
     
 */
 
+
 var superficie3D;
 var mallaDeTriangulos;
-
-var filas = 3;
-var columnas = 4;
 
 function crearGeometria() {
   superficie3D = new Plano(3, 3);
@@ -202,7 +200,6 @@ function dibujarMalla(mallaDeTriangulos) {
         */
     gl.drawElements(
       gl.TRIANGLE_STRIP,
-      // gl.TRIANGLES,
       mallaDeTriangulos.webgl_index_buffer.numItems,
       gl.UNSIGNED_SHORT,
       0

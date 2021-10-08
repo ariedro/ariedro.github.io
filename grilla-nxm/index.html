@@ -37,6 +37,8 @@
 
         var vertexShaderFile="vertex-shader.glsl";
         var modo="edges"; // wireframe, smooth, edges
+        var filas=3;
+        var columnas=4;
         var shaderProgram;
         var time=0;
 
@@ -244,8 +246,9 @@
             gui.add(window, "alturaCamara",-4,4).step(0.01);;
             gui.add(window, "modo",["wireframe","smooth","edges"]);
             gui.add(window, "velocidadAngular",0, 1).step(0.01);
-            
-            
+
+            geometriaControllers = [gui.add(window, "filas", 1, 100).step(1), gui.add(window, "columnas", 1, 100).step(1)]
+            geometriaControllers.forEach(controller => controller.onChange(crearGeometria));
         }
 
         function webGLStart() {
